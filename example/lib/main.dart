@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -338,7 +338,7 @@ class _HomePageState extends State<HomePage> {
 
 class ThreeSizeDot extends StatefulWidget {
   ThreeSizeDot(
-      {Key key,
+      {Key? key,
       this.shape = BoxShape.circle,
       this.duration = const Duration(milliseconds: 1000),
       this.size = 8.0,
@@ -351,9 +351,9 @@ class ThreeSizeDot extends StatefulWidget {
   final BoxShape shape;
   final Duration duration;
   final double size;
-  final Color color_1;
-  final Color color_2;
-  final Color color_3;
+  final Color? color_1;
+  final Color? color_2;
+  final Color? color_3;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -362,10 +362,10 @@ class ThreeSizeDot extends StatefulWidget {
 
 class _ThreeSizeDotState extends State<ThreeSizeDot>
     with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-  Animation<double> animation_1;
-  Animation<double> animation_2;
-  Animation<double> animation_3;
+  late AnimationController animationController;
+  late Animation<double> animation_1;
+  late Animation<double> animation_2;
+  late Animation<double> animation_3;
 
   @override
   void initState() {
@@ -436,12 +436,12 @@ class _ThreeSizeDotState extends State<ThreeSizeDot>
 }
 
 class Dot extends StatelessWidget {
-  final BoxShape shape;
-  final double size;
-  final Color color;
+  final BoxShape? shape;
+  final double? size;
+  final Color? color;
 
   Dot({
-    Key key,
+    Key? key,
     this.shape,
     this.size,
     this.color,
@@ -453,7 +453,7 @@ class Dot extends StatelessWidget {
       child: Container(
         width: size,
         height: size,
-        decoration: BoxDecoration(color: color, shape: shape),
+        decoration: BoxDecoration(color: color, shape: shape!),
       ),
     );
   }
@@ -461,16 +461,16 @@ class Dot extends StatelessWidget {
 
 class DelayTween extends Tween<double> {
   DelayTween({
-    double begin,
-    double end,
+    double? begin,
+    double? end,
     this.delay,
   }) : super(begin: begin, end: end);
 
-  final double delay;
+  final double? delay;
 
   @override
   double lerp(double t) =>
-      super.lerp((math.sin((t - delay) * 2 * math.pi) + 1) / 2);
+      super.lerp((math.sin((t - delay!) * 2 * math.pi) + 1) / 2);
 
   @override
   double evaluate(Animation<double> animation) => lerp(animation.value);
